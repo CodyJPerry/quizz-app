@@ -22,11 +22,14 @@ p {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  /* Background Images */
+  background: url('../public/blob-yellow.png') top right no-repeat, url('../public/blob-blue.png') bottom left no-repeat;
 }
 
 .landing-page .title,
 .landing-page .description {
-  color: 293264
+  color: 293264;
 }
 
 .landing-page .title {
