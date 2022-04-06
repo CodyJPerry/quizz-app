@@ -9,6 +9,10 @@ h1 {
   margin: 0;
 }
 
+p {
+  margin-top: 0;
+}
+
 /* Landing Page Styles */
 .landing-page {
   background: #F5F7FB;
@@ -20,10 +24,33 @@ h1 {
   justify-content: center;
 }
 
-.landing-page .title {
-  color: #293264;
-  font-size: 3.5rem;
+.landing-page .title,
+.landing-page .description {
+  color: 293264
 }
+
+.landing-page .title {
+  font-size: 3.5rem;
+  margin-bottom: 0.6em;
+}
+
+.landing-page .start-btn {
+  background: #4D5B9E;
+  color: #F5F7FB;
+  border: none;
+  padding: 1.2em 3.5em;
+  font-size: 1.5rem;
+  font-weight: 700;
+  border-radius: 15px;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 1px;
+}
+
+/* Utility Classes */
+.shadow {
+  box-shadow : 0px 4px 8px 3px rgba(0, 0, 0, 0.25);
+}
+
 
 
 
