@@ -24,7 +24,7 @@ function App() {
   }, [])
 
   const questionElements = questions.map(q => {
-    return <Question key={q.id} question={q.question} choices={q.choices} />
+    return <Question key={q.id} question={q.question} choices={q.choices} correctAnswer={q.correct_answer} />
   })
 
   return (
