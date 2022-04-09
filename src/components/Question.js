@@ -1,14 +1,19 @@
 import React from 'react'
 
 const Question = (props) => {
+    const {question, choices} = props
+
+    console.log(question.replaceAll({'&quot;': '"', "&#039;": "'"}))
+
+    const buttonElements = choices.map((choice, i) => {
+        return <button key={i} className="btn">{choice}</button>
+    })
+
     return (
         <div className="question-wrapper">
-            <h2 className='question-title'>{props.question}</h2>
+            <h2 className='question-title'>{question.replaceAll('&quot;', '"').replace("&#039;", "'")}</h2>
             <div className="buttons-wrapper">
-                <button className="btn">One</button>
-                <button className="btn">Two</button>
-                <button className="btn">Three</button>
-                <button className="btn">Four</button>
+                {buttonElements}
             </div>  
         </div>
     )
