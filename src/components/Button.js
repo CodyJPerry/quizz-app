@@ -1,8 +1,7 @@
 import React from 'react'
 
 const Button = (props) => {
-    const {choices, choice, correctAnswer, selectAnswer, id} = props
-    
+    const {choices, choice, correctAnswer, selectAnswer, id, isSelected, isDisabled} = props
     return (
         <button
             className="btn" 

@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import { useState, useEffect } from 'react'
 import { nanoid } from 'nanoid';
 import './App.css';
-import LandingPage from './components/LandingPage';
+import LandingPage from './components/LandingPage'
 import Question from './components/Question'
 
 function App() {
@@ -34,7 +34,7 @@ function App() {
           .then(data => {
               const questionsData = data.results.map(question => {
               const choicesArr = shuffle(question.incorrect_answers.concat(question.correct_answer))
-              return {...question, id: nanoid(), choices: choicesArr}
+              return {...question, id: nanoid(), choices: choicesArr, isSelected: false, userAnswer: ""}
             })
             // Set our questions state
             setQuestions(questionsData)
@@ -42,24 +42,22 @@ function App() {
   }, [])
 
   function selectAnswer(event, id) {
-    // Since we are getting the event passed in we want to grab the button text and compare it
-      // Then update the selectedAnswer property in state
+    event.target.classList.toggle('selected')
     setQuestions(prevQuestions => prevQuestions.map(question => {
       return question.id === id 
-             ? {...question, selection: { isSelected: true, userAnswer: event.target.textContent.toLowerCase() }} 
+             ? {...question, isSelected: !question.isSelected, userAnswer: event.target.textContent.toLowerCase() } 
              : question
     }))
   }
 
-  console.log(questions)
-
   const questionElements = questions.map(q => {
     return <Question 
               key={q.id} 
-              // id={q.id}
               question={q.question} 
-              choices={q.choices} 
+              choices={q.choices}
+              userAnswer={q.userAnswer}
               correctAnswer={q.correct_answer}
+              isSelected={q.isSelected}
               selectAnswer={(event) => selectAnswer(event, q.id)}
           />
   })
@@ -73,17 +71,3 @@ function App() {
 }
 
 export default App
-
-
-/*
-Object Structure:
-
-category: "Entertainment: Video Games"
-choices: (4) ['Ferrari FXX-K', 'McLaren P1 GTR', 'Lotus E23', 'Aston Martin Vulcan']
-correct_answer: "Aston Martin Vulcan"
-difficulty: "medium"
-id: "li2BY_jcEvg1mrIAlUemE"
-incorrect_answers: (3) ['Ferrari FXX-K', 'McLaren P1 GTR', 'Lotus E23']
-question: "In Forza Motorsport 6, which of these track-exclusive cars was NOT featured in the game, either originally with the game or added as DLC?"
-type: "multiple"
-*/ 
