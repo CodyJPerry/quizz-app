@@ -23,8 +23,25 @@ function App() {
           })
   }, [])
 
+  function selectAnswer(event, id) {
+    // Since we are getting the event passed in we want to grab the button text and compare it
+      // Then update the selectedAnswer property in state
+
+
+
+    console.log(event.target)
+    console.log(id)
+  }
+
   const questionElements = questions.map(q => {
-    return <Question key={q.id} question={q.question} choices={q.choices} correctAnswer={q.correct_answer} />
+    return <Question 
+              key={q.id} 
+              id={q.id}
+              question={q.question} 
+              choices={q.choices} 
+              correctAnswer={q.correct_answer}
+              selectAnswer={(event) => selectAnswer(event, q.id)}
+          />
   })
 
   return (

@@ -1,7 +1,8 @@
 import React from 'react'
+import Button from '../components/Button'
 
 const Question = (props) => {
-    const {question, choices, correctAnswer} = props
+    const {question, choices, correctAnswer, selectAnswer, id} = props
 
     function shuffle(array) {
         let currentIndex = array.length,  randomIndex;
@@ -22,7 +23,16 @@ const Question = (props) => {
       }
 
     const buttonElements = shuffle(choices).map((choice, i) => {
-        return <button key={i} className="btn">{choice}</button>
+        return (
+            <Button
+                key={i}
+                // id={id}
+                className="btn"
+                selectAnswer={(event) => selectAnswer(event, id)}
+                choice={choice.replaceAll('&quot;', '"').replaceAll("&#039;", "'")}> 
+            </Button>
+
+        )
     })
 
     return (
