@@ -2,7 +2,7 @@ import React from 'react'
 
 const Button = (props) => {
     const {choices, choice, correctAnswer, selectAnswer, id} = props
-    // console.log(selectAnswer)
+    
     return (
         <button
             className="btn" 
