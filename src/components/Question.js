@@ -2,7 +2,7 @@ import React from 'react'
 import Button from '../components/Button'
 
 const Question = (props) => {
-    const {question, choices, correctAnswer, selectAnswer, id, isSelected, isDisabled, userAnswer} = props
+    const {question, choices, correctAnswer, selectAnswer, id, isSelected, userAnswer} = props
 
     const buttonElements = choices.map((choice, i) => {
         return (

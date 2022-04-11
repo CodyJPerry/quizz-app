@@ -8,6 +8,7 @@ import Question from './components/Question'
 function App() {
   const [isStarted, setIsStarted] = useState(true)
   const [questions, setQuestions] = useState([])
+  let count = 1;
 
   function shuffle(array) {
     let currentIndex = array.length,  randomIndex;
@@ -45,14 +46,30 @@ function App() {
     event.target.classList.toggle('selected')
     setQuestions(prevQuestions => prevQuestions.map(question => {
       return question.id === id 
-             ? {...question, isSelected: !question.isSelected, userAnswer: event.target.textContent.toLowerCase() } 
+             ? {...question, isSelected: !question.isSelected, userAnswer: event.target.textContent } 
              : question
     }))
   }
 
+  console.log(questions)
+
+  function checkAnswers() {
+    questions.map(question => {
+      question.correct_answer === question.userAnswer ? count++ : count--
+      // Disable the button to prevent from running again
+    })
+    document.querySelector('.check-btn').disabled = true
+    if (count < 0) {
+      count = 0
+    } else if (count > 5) {
+      count = 5
+    }
+    console.log(count)
+  }
+
   const questionElements = questions.map(q => {
     return <Question 
-              key={q.id} 
+              key={q.id}
               question={q.question} 
               choices={q.choices}
               userAnswer={q.userAnswer}
@@ -65,6 +82,7 @@ function App() {
   return (
     <div>
       {questionElements}
+      <button className="check-btn shadow" onClick={checkAnswers}>Check answers</button>
     </div>
   )
 
